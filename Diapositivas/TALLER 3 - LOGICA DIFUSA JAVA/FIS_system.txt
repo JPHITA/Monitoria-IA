@@ -1,0 +1,88 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package fis_resource_expenses_calculator;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
+import net.sourceforge.jFuzzyLogic.FIS;
+//import net.sourceforge.jFuzzyLogic.FunctionBlock;
+import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
+import net.sourceforge.jFuzzyLogic.rule.Rule;
+//import net.sourceforge.jFuzzyLogic.rule.Variable;
+
+/**
+ *
+ * @author jnico
+ */
+public class FIS_system {
+    
+    public String path = "src/fis_resource_expenses_calculator/FIS.fcl";
+    public FIS fis;
+    
+    public FIS_system(){
+        this.fis = FIS.load(this.path, true);
+        
+        // En caso de error
+        if (fis == null) {
+            System.err.println("No se puede cargar el archivo: '" + this.path + "'");
+            return;
+        }
+    }
+    
+    public void setVar(String var, double value){
+        fis.setVariable(var, value);
+    }
+    
+    public void eval(){
+        fis.evaluate();
+    }
+    
+    public double getDefuzzified(String var){
+        return fis.getVariable(var).getLatestDefuzzifiedValue();
+    }
+    
+    public String getConjunto(String var){
+        String r = "";
+        
+        ArrayList<Double> pertenencias = new ArrayList<Double>();
+        pertenencias.add(fis.getVariable(var).getMembership("bajo"));
+        pertenencias.add(fis.getVariable(var).getMembership("medio"));
+        pertenencias.add(fis.getVariable(var).getMembership("alto"));
+        pertenencias.add(fis.getVariable(var).getMembership("muy_alto"));
+        
+        String[] conjuntos_basura = {"Baja", "Media", "Alta", "Muy alta"};
+        String[] conjuntos_energia = {"Bajo", "Medio", "Alto", "Muy alto"};
+        
+        double max = Collections.max(pertenencias);
+        if (var.equals("cant_basura_generada")) {
+            return conjuntos_basura[pertenencias.indexOf(max)];
+        } else {
+            return conjuntos_energia[pertenencias.indexOf(max)];
+        }
+    }
+    
+    public void showCharts(){
+        JFuzzyChart.get().chart(fis.getFunctionBlock("Resources_calculator"));
+    }
+    
+    public void showAgregacion(){
+        JFuzzyChart.get().chart(fis.getVariable("cant_basura_generada"), fis.getVariable("cant_basura_generada").getDefuzzifier(), true);
+        JFuzzyChart.get().chart(fis.getVariable("cant_energia_consumida"), fis.getVariable("cant_energia_consumida").getDefuzzifier(), true);
+    }
+    
+    public String showRules(){
+        String rules = "";
+        for (Rule rule : fis.getFunctionBlock("Resources_calculator").getFuzzyRuleBlock("No1").getRules()) {
+            if (rule.getDegreeOfSupport() > 0) {
+                rules += rule.toString() + "\n";
+            }
+        }
+        
+        return rules;
+    }
+    
+}

@@ -1,0 +1,60 @@
+% tipo de rostro: ovalado, diamante, redondo, cuadrado, rectangular, alargado y triangular.
+/*
+a.) Ovalado.
+b.) Rombo ó Diamante.
+c.) Redondo.
+d.) Cuadrado.
+e.) Rectangular.
+g.) Alargado.
+h.) Corazón ó Triangular
+*/
+        
+corte(C):- write( '¿Con qué género te identificas más hombre o mujer? : Hombre= h o Mujer=m '), read(Sexo),
+    write('cuál es su tipo de rostro? Por favor escriba la respuesta correctamente ("a","b","c","d","e","g","h"). Sin comillas'), read(Rostro),
+    write('La recomendación es: '), recomendar(C,Sexo,Rostro),!.
+
+%Sugerencias por corte de pelo
+    recomendar('aunque te podemos considerarlo un rostro ideal ya que guarda bastante las proporciones, por lo que cualquier peinado te quedará genial, aunque quizás los más cortos los que mejor puedan marcar la perfección de tus facciones. Un apunte. no lleves peinados con mucho flequillo ya que se te verá el rostro más ovalado todavía y a poder ser elige peinados o cortes en los que el cabello se peine hacia arriba, hacia un lado o hacia atrás, ya que la frente despejada favorece mucho para este tipo de rostro.',Sexo,Rostro):-
+    Sexo = h,Rostro= a.
+
+    recomendar('el corte que mejor os sentará a los que tengáis este tipo de rostro, será el que pueda disimular un poco la “dureza” de vuestros ángulos, por lo que los peinados o cortes algo “largos” pueden ser tu mejor aliado. Puedes apostar por llevar una media melena y combinarla con una barba que te permita sacar mayor partido a tus pómulos. Los estilos “hipsters” de peinados, con melenas algo despeinadas son otra buena opción para este tipo de rostro así como las últimas tendencias en tupes y peinados hacia arriba que atraerán la atención frente a tus facciones.', Sexo,Rostro) :-
+    Sexo = h, Rostro= b.
+
+    recomendar('el mejor corte será un corte largo que permita disimular un poco esa redondez, como por ejemplo una media melena, o concentrar mayor volumen en la parte alta de la cabeza para poder atraer a este punto todas las miradas. Los peinados con raya puede que te favorezcan también o como ves arriba todos aquellos con los que “juegues” en lo que respecta al volúmen y hacia arriba de modo que puedas crear el efecto de que las facciones redondeadas quedan algo más disimuladas.', Sexo,Rostro) :-
+    Sexo = h, Rostro= c.
+
+    recomendar('el corte ideal para este tipo de rostro es poder suavizar un poco tus facciones. Que los ángulos de tu cara no se marquen tanto por lo que un corte con volumen en el centro y los lados rapados. Será, sin duda, tu corte de cabello perfecto. Los flequillos también pueden quedarte muy bien y como no, el “spiky” (primera foto a la izquierda) será un estilo al que puedes sacarle mucho partido.', Sexo,Rostro) :-
+    Sexo = h, Rostro= d.
+
+    recomendar('el corte de cabello ideal para las caras rectangulares serán aquellos que te permitan disimular el ancho del rostro, por lo que los cortes con volumen o cantidad de pelo hacia la frente, o con flequillo pueden ser tu mejor opción para disimular la “dureza” de tus rasgos. Los hombres con cabello rizado y este tipo de rostro es mejor que saquen partido a sus rizos naturales y los dejen crecer cuanto quieran. Por otro lado, todo lo que sean cortes asimétricos y de lado servirán para que tu rostro se vea algo más cuadrado e incluso para que las facciones se redondeen ligeramente.', Sexo,Rostro) :-
+    Sexo = h, Rostro= e.
+
+    recomendar('si deseas que tu rostro no se vea tan alargado, deberás llevar un corte en el que se tenga mayor volumen en la parte superior, incluyendo la frente y los lados de la cabeza, manteniendo el cabello de esa zona un poco más largo alrededor de las oreja.', Sexo,Rostro) :-
+    Sexo = h, Rostro= g.
+
+    recomendar('los flequillos son tus mejores aliados, ya que te permitirán disimular la frente. También los peinados de raya, y los de efecto algo despeinado.Luego están los cortes clásicos como el “pompadour” o el “quiff” que también te van a favorecer mucho. Este tipo de cortes son para que nos entendamos similares a los tupés de toda la vida, pero con los lados algo más rebajados.', Sexo,Rostro) :-
+    Sexo = h, Rostro= h.
+
+    recomendar('¡Eres afortunada! Te sienta prácticamente bien todo tipo de cortes de pelo, aunque los cortes bob, long bob, medias melenas, ondas y rizos ligeros potenciarán tus facciones y las definirán aún más. Si te gustan los looks más personales, puedes optar por cortes pixies, que rejuvenecerán tu rostro en un instante.', Sexo,Rostro) :-
+    Sexo = m, Rostro= a.
+
+    recomendar('para suavizar el contraste de la zona de las mejillas es mejor evitar el pelo liso y apostar por un largo mediano con raya lateral, flequillos voluminosos y ondulados. Los corte bob o long bob también los favorecen muchísimo. Pero el más estiloso para este tipo de cara es, sin duda alguna, el corto estilo pixie.', Sexo,Rostro) :-
+    Sexo = m, Rostro= b.
+
+    recomendar('el objetivo es afinar tus facciones llevando el pelo largo en capas, a media espalda y con un escalado que se inicie por debajo de la barbilla. El pelo lacio es muy adecuado, sin mucho volumen. Si tienes el cabello fino y liso, puedes atreverte con un corte pixie largo, ideal para el verano y resaltar el cuello.', Sexo,Rostro) :-
+    Sexo = m, Rostro= c.
+
+    recomendar('para rostros con maxilares anchos, similar a las sienes, lo más recomendable es un corte con mechas, o capeado y voluminoso. Evita flequillos rectos y lisos o el pelo corto, ya que acortaría la altura de tu cara, mejor un flequillo largo y despuntado para desviar la atención. Puedes dar volumen en la coronilla con el fin de alargar tu rostro. Lleva el cabello suelto y nunca muy liso.', Sexo,Rostro) :-
+    Sexo = m, Rostro= d.
+
+    recomendar('para equilibrar los pómulos y líneas del mentón marcadas favorecen los peinados con flequillo, los rizos medianos, el cabello largo con rizos medianos y el corte bob.', Sexo,Rostro) :-
+    Sexo = m, Rostro= e.
+
+    recomendar('para este tipo de rostros es fundamental conseguir una sensación de amplitud a los lados, con flequillo y un corte que llegue a la altura del hombro. Busca el máximo volumen, sobre todo en los laterales, con rizos y ondas. También los flequillos rectos o de lado a la altura de las cejas te darán volumen a los lados.', Sexo,Rostro) :-
+    Sexo = m, Rostro= g.
+
+    recomendar('lo mejor es dejarte un flequillo muy marcado y despuntado. Puedes optar por atreverte con un corte de pelo muy corto y desenfadado o largo pero con mucho volumen. Un corte nuevo, que es tendencia, es el corte de pelo clavicut, una melena que llega a la altura de la clavícula y que favorece muchísimo a cualquier topo de rostros', Sexo,Rostro) :-
+    Sexo = m, Rostro= h.
+
+
+% Autor: María Alejandra Muñoz Alarcón. CC 1000206606 
