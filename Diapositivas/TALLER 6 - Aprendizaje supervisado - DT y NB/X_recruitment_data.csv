@@ -1,4 +1,4 @@
-Gender,Python_exp,Experience_Years,Education,Internship,Score,Salary * 10E4,Offer_History,Location
+Gender,Python_exp,Experience_Years,Education,Internship,Score,Salary * 1e3,Offer_History,Location
 Male,Yes,0.0,Graduate,No,5139,0.0,Yes,Urban
 Male,No,1.0,Graduate,No,4583,128.0,Yes,Rural
 Male,No,0.0,Graduate,Yes,3000,66.0,Yes,Urban
